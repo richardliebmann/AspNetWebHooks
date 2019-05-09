@@ -24,7 +24,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:DCC_ExeOutput="$(build.artifactStagingDirectory)"'
+    msbuildArgs: '/p:DCC_ExeOutput="$(build.ArtifactStagingDirectory)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -32,3 +32,10 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+
+
